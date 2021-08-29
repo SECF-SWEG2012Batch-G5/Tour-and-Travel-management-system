@@ -87,3 +87,29 @@ void menu()
 
 
     }
+ void getinfo(info inform[],int count){
+      string cplace;
+       int p,s,pk;
+       cout<<"Enter name: ";
+       cin>>inform[count].name;
+
+       cout<<"Enter age: ";
+       cin>>inform[count].age;
+
+       cout<<"Enter email: ";
+       cin>>inform[count].email;
+
+       cout<<"Enter phone: ";
+       cin.ignore();
+       getline(cin,inform[count].phone,'\n');
+
+
+       cout<<"Enter destination of choice: "<<endl;
+
+       cout<<"0 for Gonder "<<endl;
+       cout<<"1 for Axum "<<endl;
+       cout<<"2 for Harar"<<endl;
+       cin>>p;
+        cin.ignore();
+       inform[count].place[p];
+ }
