@@ -301,3 +301,98 @@ void rate(int no_dest){
 			cout<<"\nWrong choice. Choice another site: "<<endl;
 			goto place;
 		}
+	else{
+
+    	        cout<<"Enter your name: ";
+		    	cin>>sites[x].ranks.name;
+		    	cout<<"Enter rating of the site(1-10): ";
+		    	cin>>sites[x].ranks.rate;
+			}
+	} // end of function that input ratinf of places
+User newUser(int j,int no_dest){
+    User user;
+    bool flag=false;
+    char choice;
+
+            cout<<"Enter name: ";
+            cin>>user.name;
+            cout<<"Enter age: ";
+            cin>>user.age;
+            display_dest(no_dest);
+            choice:
+            cout<<"\nEnter destination by name: ";
+			cin>>user.package.name;
+
+			for (int i= 0; i< no_dest; i++)
+		   {
+			     if(user.package.name == sites[i].name)
+				    {
+					    if(sites[i].sits==0)
+					       {
+						     	cout<<"Sorry this destination is fully booked, choose another"<<endl;
+						     	goto choice;
+						   }
+						else
+						   {
+							    flag=true;
+								--sites[i].sits;
+								++sites[i].reserved;
+							    break;
+
+						   }
+				    }
+			     else
+					{
+			            continue;
+				    }
+			}
+			if(flag==false)
+				{
+					cout<< "No match choose another place"<<endl;
+					goto choice;
+				}
+
+			flag=false;
+            choice1:
+            cout<<"Enter travel season: ";
+            cin>>user.package.season;
+
+             for (int i= 0; i< no_dest; i++)
+			   {
+				    if(user.package.season == sites[i].season)
+					   {
+					     	flag=true;
+					         break;
+					   }
+				    else{
+			            continue;
+				       }
+				}
+			if(flag==false)
+				{
+					cout<< "\nNo match choose another season"<<endl;
+					goto choice1;
+				}
+            pack:
+            cout<<"\nChoose prefered package\n1.VIP\n2.NORMAL\n-: ";
+            cin>>user.package.offer;
+            if (user.package.offer == 1){
+
+            	vipp( no_dest,  j, user.package.name, user.id);
+
+			}
+			else if(user.package.offer == 2){
+
+				normp( no_dest, j,  user.package.name, user.id);
+			}
+			else {
+				cout<<"Wrong input. Try again ";
+				goto pack;
+			}
+		user.id=user.id+j;
+            cout<<"Your ID number is: "<<user.id<<endl;
+            cout<<"Your visitor point is: "<<++user.visitorp<<endl;
+
+        return user;
+}
+
