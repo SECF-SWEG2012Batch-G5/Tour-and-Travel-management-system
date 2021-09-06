@@ -395,4 +395,153 @@ User newUser(int j,int no_dest){
 
         return user;
 }
+// this is the main function and it contains the main menu
+int main(){
+    int login;
+    int i = 0,j = 0,choice = 1,no_dest=0,choose,option;
+    cout<<"\n\t.........WELCOME TO ANIT TOUR AND TRAVEL AGENCY........."<<endl;
+    label:
+    cout<<"\n\n\t\t  .........MAIN MENU.........."<<endl;
+    cout<<"\n\t\t\t1.ADMIN\n\t\t\t2.USER MENU\n- ";
+    cin>>login;
+    system("cls");
+    switch(login)
+    {
+        case 1:
+            do{
+			cout<<"\n\t.....SITE REGISTRATION....."<<endl;
+                sites[i] = newSite();
+                i++;
+                ++no_dest;
+                cout<<"\n1.REGISTOR NEW SITE\n2. MAIN MENU\n- ";
+                cin>>choice;
+               system("cls");
+            }while(choice == 1);
+            goto label;
+        case 2:
+
+		   u:
+		   cout<<"\n\n\t\t  ......USER MENU......"<<endl<<endl;
+		   cout<<"\t..press.."<<endl;
+		   cout<<"\t1.Check available destinations"<<endl;
+		   cout<<"\t2.Tour resrvation"<<endl;
+		   cout<<"\t3.Edit"<<endl;
+		   cout<<"\t4.Show records"<<endl;
+		   cout<<"\t5.Rating"<<endl;
+		   cout<<"\t6.Reports"<<endl;
+		   cout<<"\t7.Main menu"<<endl;
+		   cout<<"\t8.Exit"<<endl;
+		   cout<<"\n-";
+
+   a:
+   cin>>option;
+   system("cls");
+   if(option==1)
+	   {
+	   	int option1;
+	   	cout<<"\n......Available places....."<<endl;
+	   	cout<<"Site name\tSeason\t#available seats"<<endl;
+	   	for(int i=0; i<no_dest; i++)
+		   {
+	   		cout<<i+1<<"."<<sites[i].name<<"\t\t"<<sites[i].season<<"\t"<<sites[i].sits<<endl;
+		   }
+		   cout<<"\n\n1.Continue to reservation"<<endl;
+		   cout<<"2.USER MENU"<<endl;
+		   cout<<"3.EXIT\n-";
+		   cin>>option1;
+	system("cls");
+		   switch(option1)
+			   {
+				   	case 1:
+				   		goto r;
+				   		break;
+				   	case 2:
+				   		goto u;
+				   		break;
+				   	case 3:
+				   		return 0;
+			   }
+
+	   }
+   else if(option==2){
+   	r:
+   	            cout<<"\n\t...RESERVATION..."<<endl;
+                users[j] = newUser(j,no_dest);
+                j++;
+                cout<<"\n1.RESERVATION\n2. USER MENU\n3. MAIN MENU\nPress any other number to exit\n- ";
+                cin>>choice;
+                system("cls");
+                switch(choice){
+                	case 1:
+                		goto r;
+                		break;
+                	case 2:
+                		goto u;
+                		break;
+                	case 3:
+                		goto label;
+                	    break;
+                   default:
+                   	  return 0;
+				}
+
+   }
+   else if(option==3){
+	   	cout<<"\n...........EDIT..........."<<endl;
+	   	cout<<"1.DELETE\n2.MODIFY\n3.SORT\n4.SEARCH\n-press any other key to exit\n-";
+	   	cin>>choose;
+	   	system("cls");
+	   	if(choose==1){
+	   		del(j);
+
+	   		goto u;
+		   }
+		else if(choose==2){
+			modify(j,no_dest);
+			goto u;
+		}
+		else if(choose==3){
+			 sortt(users, &j);
+			 goto u;
+		}
+		else if (choose == 4)
+        {
+            searchh(users, &j);
+            goto u;
+
+        } else{
+			return 0;
+		}
+   }
+   else if(option==4)
+   {
+	   	cout<<".....Reservations....."<<endl;
+	   	cout<<"ID\tName\tSites\tSeason\tPackage(1-VIP/2-NORMAL)"<<endl;
+	   	for(int x=0; x<j; x++)
+		   {
+	   		  cout<<users[x].id<<"\t"<<users[x].name<<"\t"<<users[x].package.name<<"\t"<<users[x].package.season<<"\t"<<users[x].package.offer<<endl;
+		   }
+		   goto u;
+   }
+   else if(option==5){
+        cout<<"\n......RATING......"<<endl;
+   	    rate(no_dest);
+	    goto u;
+   }
+   else if(option==6){
+   	   report( no_dest);
+   }
+   else if(option==7){
+   	 goto label;
+   }
+   else if(option==8){
+   	return 0;
+   }
+   else {
+   	cout<<"Wrong input, Please input again";
+   	goto a;
+   }
+    }
+
+}
 
