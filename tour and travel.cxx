@@ -202,3 +202,102 @@ void display_dest(int no_dest){
 			            continue;
 				   }
 			}
+         if(flag==false)
+
+			{
+				cout<< "\nNo match choose another season"<<endl;
+				goto choice1;
+			}
+        pack:
+        cout<<"\nChoose prefered package\n1.VIP\n2.NORMAL\n-: ";
+        cin>>users[x].package.offer;
+
+        if (users[x].package.offer == 1)
+	    	{
+           	    vipp( no_dest,  j, users[x].package.name, id); // calls function for displaying price for VIP
+
+	    	}
+		else if(users[x].package.offer == 2)
+	    	{
+			    normp( no_dest, j,  users[x].package.name, id); // calls for function for displaying price for normal
+	    	}
+		else
+	    	{
+				cout<<"\nWrong input. Try again ";
+				goto pack;
+			}
+		cout<<"\nModification of reservation information of customer with id "<<id<<" is complete."<<endl;
+      }
+   }
+void report(int no_dest){
+      	cout<<"sites\tseason\tDep_Date\tNO_Pass"<<endl;
+
+      	for (int i=0; i<no_dest; i++)
+		   {
+      		    cout<<sites[i].name<<"\t"<<sites[i].season<<"\t"<<sites[i].date.dd<<"/"<<sites[i].date.mm<<"/"<<sites[i].date.yy<<"\t"<<sites[i].reserved<<endl;
+		   }
+   } // function for displaying report for registered sites
+   // this function will allow users to search records by using id
+   void searchh(User users[], int *j)
+   {
+       int id;
+       cout<< "enter the id of the user you want"<<endl;
+       cin>> id;
+
+       for (int i=0; i< *j;i++)
+       {
+           if (id == users[i].id)
+           {
+               cout<<"ID \t"<<"Name"<<" \t"<<"Destination  "<<"Season \tPackage"<<endl;
+               cout<< users[i].id<<"\t"<<users[i].name<<"\t"<<users[i].package.name<<"\t"<<users[i].package.season<<"\t"<<users[i].package.offer<<endl;
+               break;
+           }else
+           {
+               cout<< "no match"<<endl;
+           }
+       }
+   }
+   // this function displays users information in an alphabetical order
+   void sortt (User users[], int *j)
+{
+        User temp;
+    for (int i=0; i< *j;++i)
+    {
+        for (int k =i+1 ; k< *j;++k)
+        {
+            if (users[i].name > users[k].name )
+            {
+                temp = users[i];
+                users[i] = users[k];
+                users[k] = temp;
+            }
+        }
+    }
+    cout<< "alphabetical order"<<endl;
+
+    cout<<"ID \t"<<"Name"<<" \t"<<"Destination  "<<"Season \tPackage"<<endl;
+    for(int i=0; i<*j; i++)
+    {
+
+        cout<< users[i].id<<"\t"<<users[i].name<<"\t"<<users[i].package.name<<"\t"<<users[i].package.season<<"\t"<<users[i].package.offer<<endl;
+    }
+}
+   // this function reads user information , make reservation , adds visitor point and give a unique id to the user
+void rate(int no_dest){
+    	string site_name;
+    	int x=-1;
+    	display_dest(no_dest);
+    	place:
+    	cout<<"Enter name of destination you want to rate: ";
+    	cin>>site_name;
+    	for(int i=0; i<no_dest; i++){
+    		if(site_name==sites[i].name){
+		    	x=i;
+		    	break;
+			}
+
+		}
+		if(x==-1){
+			cout<<"\nWrong choice. Choice another site: "<<endl;
+			goto place;
+		}
