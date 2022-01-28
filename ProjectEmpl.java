@@ -1,6 +1,9 @@
+package project;
 import java.util.*;
-public class ProjectEmpl{
-	public static void main(String[] args) {
+import JavaApplication.Destination; 
+public class ProjectEmpl {
+       public static int noDest=0;
+public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
 		
@@ -13,15 +16,62 @@ public class ProjectEmpl{
 		Admin admin=new Admin();
 		User user=new User();
 		if(num==1){
-			admin.showChoiceAdmin();
+		int choice=showChoiceAdmin();
+		String ch;
+			switch (choice){
+				case 1: 
+				admin.login();
+				break;
+				case 2:
+				noDest=admin.setDestination();
+				System.out.println("To where you want to be redirected main menu or Admin?");
+				System.out.println("Enter Menu for main menu or Admin for Admin menu");
+				ch=input.next();
+				if(ch.toUpperCase()=="ADMIN") {
+				showChoiceAdmin();}
+				else if(ch.toUpperCase()=="MENU") {
+					showChoiceUser();}
+				else
+			    {System.out.println("Incorrect Choice!");}
+	
+				break;
+				case 3:
+				admin.editDestination();
+				break;
+				case 4:
+				admin.viewReport();
+				break;
+				default:
+				System.out.println("Incorrect choice!");
+			}
 		}
 		
 		else{
-			user.showChoiceUser();
-			
+		int choice1=showChoiceUser();
+			switch (choice1){
+				
+				case 1: 
+				user.showDestination(noDest);
+				break;
+				case 2:
+				user.reservation();
+				break;
+				case 3:
+				user.cancelReservation();
+				break;
+				case 4:
+				user.search();
+				break;
+				case 5:
+				user.makePayment();
+				break;
+				default:
+				System.out.println("Incorrect choice!");
+			}
 		}
-	}
-	public void showChoiceAdmin(){
+	
+	  }
+	public static int showChoiceAdmin(){
 		
 		Scanner input = new Scanner(System.in);
 		int choice;
@@ -38,24 +88,9 @@ public class ProjectEmpl{
 		System.out.println("*********************************************\n");
 		System.out.print("ENTER CHOICE: ");
 		choice=input.nextInt();
-		switch (choice){
-				case 1: 
-				admin.login();
-				break;
-				case 2:
-				admin.registerDestination();
-				break;
-				case 3:
-				admin.editDestination();
-				break;
-				case 4:
-				admin.viewReport();
-				break;
-				default:
-				System.out.println("Incorrect choice!");
-			}
+		return choice;
 	}
-	public int showChoiceUser(){
+	public static int showChoiceUser(){
 		
 		Scanner input = new Scanner(System.in);
 		int choice;
@@ -74,27 +109,7 @@ public class ProjectEmpl{
 		
 		System.out.print("ENTER CHOICE: ");
 		choice=input.nextInt();
-		switch (choice){
-				
-				case 1: 
-				user.showDestination();
-				break;
-				case 2:
-				user.reservation();
-				break;
-				case 3:
-				user.cancelReservation();
-				break;
-				case 4:
-				user.search();
-				break;
-				case 5:
-				user.makePayment();
-				break;
-				default:
-				System.out.println("Incorrect choice!");
-			}
+		return choice;
 		
 	}
 }
-
