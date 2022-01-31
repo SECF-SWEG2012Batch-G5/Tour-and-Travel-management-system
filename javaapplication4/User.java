@@ -135,5 +135,34 @@ public class User extends Destination {
        }
            
     }
+    public void cancle()
+    {
+          Scanner input = new Scanner(System.in);
+        String username, phonenumber;
+        int can;
+        boolean flag= false;
+        System.out.println("enter your name");
+         username= input.next();
+          System.out.println("enter your phone number");
+        phonenumber= input.next();
+        
+        for(int i=0; i<tics; i++)
+        {
+            if(userName[i].equalsIgnoreCase(username) && phoneNumber[i].equalsIgnoreCase(phonenumber))
+            {
+                  can= i;  
+                 Destination(can);
+                 flag= true;
+            } 
+        }
+        if(flag==true)
+        {
+            System.out.println("your reservation is cancelled");
+        }else
+        {
+             System.out.println("no reservation found with this data");
+        }    
+    }
+   
 }
     

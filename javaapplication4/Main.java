@@ -35,7 +35,7 @@ public class Main extends Destination {
            boolean check= true;
            int choice;
            Admin admin=new Admin();
-           
+           Destination dest= new Destination();
    
             
           int num;
@@ -84,6 +84,11 @@ public class Main extends Destination {
                                       menu();
                                       break;
                         }
+                case 4:
+                {
+                                dest.search();
+                                break;
+                }
                                 default : System.out.println("Incorrect choice!");
 			}
                     //admin.editDestination();
@@ -128,7 +133,8 @@ public class Main extends Destination {
 		System.out.println("** [1] Register Destination                               **");
 		System.out.println("** [2] Edit Destination               **");
 		System.out.println("** [3] VIEW REPORT                      **");
-		System.out.println("** [4] Exit                         **");
+                System.out.println("** [4] SEARCH                      **");
+		System.out.println("** [5] Exit                         **");
 		System.out.println("*********************************************");
 		System.out.println("*********************************************\n");
 		System.out.print("ENTER CHOICE: ");
@@ -160,6 +166,7 @@ public class Main extends Destination {
        public static void showChoiceA(int choice){
            User user=new User();
            int choice1=choice;
+           Destination dest= new Destination();
 			switch (choice1){
 				
 				case 1: 
@@ -172,9 +179,12 @@ public class Main extends Destination {
 				//user.reservation();
 				break;
 				case 3:
+                                    user.cancle();
+                                     menu();
 				//user.cancelReservation();
 				break;
 				case 4:
+                                     dest.search();
 				//user.search();
 				break;
 				case 5:
