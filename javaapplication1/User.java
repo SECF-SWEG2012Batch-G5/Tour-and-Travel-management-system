@@ -66,12 +66,12 @@ public class User extends ProjectTest1{
         showDestination();
         System.out.print("Choose destination by id:");
         num = read.nextInt();
-        for(int i=0; i<User.noDest; i++){
+     /*   for(int i=0; i<User.noDest; i++){
             if(num == User.destId[i])
             custDest[noCust] = User.destName[i];
             User.destAvailable[i]--;
         }
-        seatNo[noCust] = 
+        seatNo[noCust] = */
         
         
     }
